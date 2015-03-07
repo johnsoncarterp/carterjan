@@ -12,6 +12,8 @@ game.PlayerEntity = me.Entity.extend({
             }]);
 
         this.body.setVelocity(5, 20);
+        //keeps track of your characters direction
+        this.facing = "right";
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
         this.renderable.addAnimation("idle", [78]);
@@ -26,9 +28,11 @@ game.PlayerEntity = me.Entity.extend({
             //adds to the position of my x to set velocity
             //me.timer.tick makes everything look smooth
             this.body.vel.x += this.body.accel.x * me.timer.tick;
+            this.facing = "right";
             this.flipX(true);
         }
         else if (me.input.isKeyPressed("left")) {
+            this.facing = "left";
             this.flipX(false);
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
@@ -58,12 +62,29 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.setCurrentAnimation("idle");
         }
 
-
+me.collision.check(this, true, this.collideHandler.bind(this), true);
         this.body.update(delta);
 
         this._super(me.Entity, "update", [delta]);
         return true;
-    }
+    },
+    
+    collideHandler: function(response) {
+        if(respnse.b.type=== "EnemyBaseEntity"){
+            var ydif = this.pos.y - response.b.pos.y;
+             var xdif = this.pos.y - response.b.pos.x;
+             
+             console.log("xdif" + xdif + "ydif" + ydif);
+             if(xdif>-35 && this.facing==='right' (xdif<0)) {
+               this.body.vel.x = 0;
+               this.pos.x = this.pos.x -1;
+                
+             }else if(xdif<70 && this.facing==='left' && xdif>0){
+                  this.body.vel.x = 0;
+               this.pos.x = this.pos.x +1;
+             }
+        }
+    } 
 });
 
 game.PlayerBaseEntity = me.Entity.extend({
