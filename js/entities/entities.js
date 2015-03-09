@@ -70,16 +70,17 @@ me.collision.check(this, true, this.collideHandler.bind(this), true);
     },
     
     collideHandler: function(response) {
-        if(respnse.b.type=== "EnemyBaseEntity"){
+        if(response.b.type=== "EnemyBaseEntity"){
             var ydif = this.pos.y - response.b.pos.y;
-             var xdif = this.pos.y - response.b.pos.x;
-             
-             console.log("xdif" + xdif + "ydif" + ydif);
-             if(xdif>-35 && this.facing==='right' (xdif<0)) {
+             var xdif = this.pos.x - response.b.pos.x;
+              console.log("1xdif" + xdif + "ydif" + ydif);
+             if(xdif>-35 && this.facing==='right' && (xdif<0)) {
                this.body.vel.x = 0;
                this.pos.x = this.pos.x -1;
+                console.log("1xdif" + xdif + "ydif" + ydif);
                 
              }else if(xdif<70 && this.facing==='left' && xdif>0){
+                 console.log("2xdif" + xdif + "ydif" + ydif);
                   this.body.vel.x = 0;
                this.pos.x = this.pos.x +1;
              }
