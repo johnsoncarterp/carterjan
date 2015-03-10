@@ -94,7 +94,7 @@ game.PlayerEntity = me.Entity.extend({
                 this.pos.x = this.pos.x + 1;
             }
  
-            if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 700) {
+            if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 400) {
            this.lastHit = this.now;
                 response.b.loseHealth();
             }
@@ -121,7 +121,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 
         this.type = "PlayerBaseEntity";
         this.renderable.addAnimation("idle", [0]);
-        this.renderable.addAnimation("broken" [1]);
+        this.renderable.addAnimation("broken", [1]);
         this.renderable.setCurrentAnimation("idle");
     },
     update: function(delta) {
@@ -159,7 +159,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 
         this.type = "EnemyBaseEntity";
         this.renderable.addAnimation("idle", [0]);
-        this.renderable.addAnimation("broken" [1]);
+        this.renderable.addAnimation("broken", [1]);
         this.renderable.setCurrentAnimation("idle");
 
     },
