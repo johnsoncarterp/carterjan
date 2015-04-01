@@ -1,4 +1,4 @@
-game.GameManager = Object.extend({
+game.GameTimerManager = Object.extend({
     init: function(x, y, settings) {
         this.now = new Date().getTime();
         this.lastCreep = new Date().getTime();
@@ -8,11 +8,7 @@ game.GameManager = Object.extend({
     update: function() {
         this.now = new Date().getTime();
 
-        if (game.data.player.dead) {
-            console.log("reset");
-            me.game.world.removeChild(game.data.player);
-            me.state.current().resetPlayer(100, 100);
-        }
+      
 
         if (Math.round(this.now / 1000) % 20 === 0 && (this.now - this.lastCreep >= 1000)) {
             game.data.gold += 1; 
@@ -27,4 +23,18 @@ game.GameManager = Object.extend({
 
         return true;
     }
+});
+
+game.HeroDeathManager = object.extend({
+    init: function(x, y, settings){
+         this.alwaysUpdate = true;
+    },
+    
+    update: function(){
+        if (game.data.player.dead) {
+            console.log("reset");
+            me.game.world.removeChild(game.data.player);
+            me.state.current().resetPlayer(10, 0);
+        }   
+   }
 });
