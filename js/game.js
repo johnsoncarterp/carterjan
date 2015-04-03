@@ -7,7 +7,7 @@ data: {
 score: 0,
         enemyBaseHealth: 10,
         playerBaseHealth: 10,
-        enemyCreepHealth: 10,
+        enemyCreepHealth: 4,
         playerHealth: 10,
         enemyCreepAttack: 1,
         playerAttack: 1,
@@ -45,6 +45,9 @@ score: 0,
         });
         }
         me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
+        
+        console.log(game.data.exp);
+        console.log(game.data.exp2);
 
         // Initialize the audio.
         me.audio.init("mp3,ogg");
