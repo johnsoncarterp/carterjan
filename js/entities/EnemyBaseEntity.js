@@ -22,6 +22,7 @@ game.EnemyBaseEntity = me.Entity.extend({
     update: function(delta) {
         if (this.health <= 0) {
             this.broken = true;
+            game.data.win = true;
             this.renderable.setCurrentAnimation("broken");
         }
         this.body.update(delta);
@@ -31,8 +32,9 @@ game.EnemyBaseEntity = me.Entity.extend({
     onCollision: function() {
 
     },
-    loseHealth: function() {
-        this.health--;
+    loseHealth: function(damage) {      
+        this.health = this.health - damage;
+        console.log(this.health);
     }
 
 });

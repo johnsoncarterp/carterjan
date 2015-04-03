@@ -64,13 +64,12 @@ game.PlayerEntity = me.Entity.extend({
     
     checkIfDead: function() {
         if (this.health < 0) {
-            console.log(this.dead + " " + game.data.player.dead);
             return true;
         }
         return false;
     },
     
-    checkKeyPresseAndMove: function() {
+    checkKeyPressesAndMove: function() {
         if (me.input.isKeyPressed("right")) {
             //adds to the position of my x to set velocity
             //me.timer.tick makes everything look smooth
@@ -126,7 +125,6 @@ game.PlayerEntity = me.Entity.extend({
     collideWithEnemyBase: function(response) {
         var ydif = this.pos.y - response.b.pos.y;
         var xdif = this.pos.x - response.b.pos.x;
-        console.log("1xdif" + xdif + "ydif" + ydif);
         if (ydif < -40 && xdif < 70 && xdif > -35) {
             this.body.falling = false;
             this.body.vel.y = -1;
