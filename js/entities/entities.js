@@ -1,18 +1,19 @@
 game.PlayerEntity = me.Entity.extend({
-    
+    //my init function that shows all other functions
     init: function(x, y, settings) {
         this.setSuper(x, y);
         this.setPlayerTimers();
         this.setAttributes();
         this.setFlags();
         this.type = "PlayerEntity";
+        //makes the camera follow the player
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-
+//adds animation
         this.addAnimation();
-
+//sets curent animation to idle
         this.renderable.setCurrentAnimation("idle");
     },
-    
+    //my set super function
     setSuper: function(x, y) {
         this._super(me.Entity, 'init', [x, y, {
                 image: "player",
@@ -25,32 +26,32 @@ game.PlayerEntity = me.Entity.extend({
                 }
             }]);
     },
-    
+    // my set player timers function
     setPlayerTimers: function() {
         this.now = new Date().getTime();
         this.lastHit = this.now;
         this.lastAttack = new Date().getTime(); //havent used this yet
     },
-    
+    // my set attributes function
     setAttributes: function() {
         this.health = game.data.playerHealth;
         this.body.setVelocity(game.data.playerMoveSpeed, 20);
         this.attack = game.data.playerAttack;
     },
-    
+    // my set flags function
     setFlags: function() {
         //keeps track of your characters direction
         this.facing = "right";
         this.dead = false;
         this.attacking = false;
     },
-    
+    // my add animation function
     addAnimation: function() {
         this.renderable.addAnimation("idle", [78]);
         this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
         this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
     },
-    
+    // my update function that lists all of my functions below
     update: function(delta) {
         this.now = new Date().getTime();
         this.dead = this.checkIfDead();
@@ -61,15 +62,16 @@ game.PlayerEntity = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
-    
+    //checks if your player is dead
     checkIfDead: function() {
         if (this.health < 0) {
             return true;
         }
         return false;
     },
-    
+    // checks key presses function
     checkKeyPressesAndMove: function() {
+        // moves player right
         if (me.input.isKeyPressed("right")) {
             //adds to the position of my x to set velocity
             //me.timer.tick makes everything look smooth
@@ -77,6 +79,7 @@ game.PlayerEntity = me.Entity.extend({
             this.facing = "right";
             this.flipX(true);
         }
+        //moves player left
         else if (me.input.isKeyPressed("left")) {
             this.facing = "left";
             this.flipX(false);
@@ -84,14 +87,15 @@ game.PlayerEntity = me.Entity.extend({
         } else {
             this.body.vel.x = 0;
         }
-
+        //makes player jump
         if (me.input.isKeyPressed("jump") && !this.body.falling && !this.body.jumping) {
             this.body.jumping = true;
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
         }
+        //makes player attack
         this.attacking = me.input.isKeyPressed("attack");
     },
-    
+    // set annimation function
     setAnimation: function() {
         if (this.attacking) {
             if (!this.renderable.isCurrentAnimation("attack")) {
@@ -108,12 +112,12 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.setCurrentAnimation("idle");
         }
     },
-    
+    // lose health function
     loseHealth: function(damage) {
         this.health = this.health - damage;
         console.log(this.health);
     },
-    
+     // coollide handler function
     collideHandler: function(response) {
         if (response.b.type === "EnemyBaseEntity") {
             this.collideWithEnemyBase(response);
@@ -121,7 +125,7 @@ game.PlayerEntity = me.Entity.extend({
             this.collideWithEnemyCreep(response);
         }
     },
-    
+    // collide with enemy basse function
     collideWithEnemyBase: function(response) {
         var ydif = this.pos.y - response.b.pos.y;
         var xdif = this.pos.x - response.b.pos.x;
@@ -136,7 +140,7 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
             this.pos.x = this.pos.x + 1;
         }
-
+        
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer) {
             this.lastHit = this.now;
             response.b.loseHealth(game.data.playerAttack);
