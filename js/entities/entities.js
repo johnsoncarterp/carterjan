@@ -187,8 +187,7 @@ this.hitCreep(response);
     
     hitCreep: function(response){
                         //adds 1 gold for creep kill
-                console.log("current gold: " + game.data.gold);
-                game.data.gold += 1;    if (response.b.health <= game.data.playerAttack) {
+           if (response.b.health <= game.data.playerAttack) {
                 //adds 1 gold for creep kill
                 console.log("current gold: " + game.data.gold);
                 game.data.gold += 1;
