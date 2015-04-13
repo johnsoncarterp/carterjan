@@ -16,14 +16,14 @@ game.GameTimerManager = Object.extend({
     },
     goldTimerCheck: function() {
         if (Math.round(this.now / 1000) % 20 === 0 && (this.now - this.lastCreep >= 1000)) {
-            game.data.gold += 1;
+            game.data.gold += (game.data.exp1 + 1);
             console.log("current gold: " + game.data.gold);
         }
     },
     creepTimerCheck: function() {
         if (Math.round(this.now / 1000) % 10 === 0 && (this.now - this.lastCreep >= 1000)) {
             this.lastCreep = this.now;
-            var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+            var creepe = me.pool.pull("EnemyCreep", 4100, 0, {});
             me.game.world.addChild(creepe, 5);
         }
     }
