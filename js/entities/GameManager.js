@@ -86,7 +86,8 @@ game.SpendGold = Object.extend({
     update: function() {
         this.now = new Date().getTime();
 
-        if (me.input.isKeyPressed("buy") && this.now - this.lastBuy >= 1000) {
+        if (me.input.isKeyPressed("buy") && (this.now - this.lastBuy >= 1000)) {
+            console.log("peanut");
             this.lastBuy = this.now;
             if (!this.buying) {
                 this.startBuying();
@@ -102,12 +103,12 @@ game.SpendGold = Object.extend({
     startBuying: function() {
         this.buying = true;
         game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+        me.state.pause(me.state.PLAY);
         game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
         game.data.buyscreen.updateWhenPaused = true;
         game.data.buyscreen.setOpacity(0.8);
         me.game.world.addChild(game.data.buyscreen, 34);
         game.data.player.body.setVelocity(0, 0);
-        me.state.pause(me.state.PLAY);
         me.input.bindKey(me.input.KEY.F1, "F1", true);
         me.input.bindKey(me.input.KEY.F2, "F2", true);
         me.input.bindKey(me.input.KEY.F3, "F3", true);
@@ -122,11 +123,17 @@ game.SpendGold = Object.extend({
             init: function() {
                 this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
                 this.font = new me.Font("impact", 26, "violet");
-                this.updateWhenPause = true;
+                this.updateWhenPaused = true;
                 this.alwaysUpdate = true;
             },
             draw: function(renderer) {
-                this.font.draw(renderer.getContext(), "Press F1-F6 To Buy, B To Exit", this.pos.x, this.pos.y);
+                this.font.draw(renderer.getContext(), "Press F1-F6 To Buy, B To Exit / Current Gold: " + game.data.gold, this.pos.x, this.pos.y);
+                this.font.draw(renderer.getContext(), "Skill 1: Increase Damage / Current Level: " + game.data.skill1 + " Cost: " + ((game.data.skill1+1)*10), this.pos.x, this.pos.y + 40);
+                this.font.draw(renderer.getContext(), "Skill 2: Run Faster / Current Level: " + game.data.skill2 + " Cost: " + ((game.data.skill2+1)*10), this.pos.x, this.pos.y + 80);
+                this.font.draw(renderer.getContext(), "Skill 3: Increase Health / Current Level: " + game.data.skill3 + " Cost: " + ((game.data.skill3+1)*10), this.pos.x, this.pos.y + 120);
+                this.font.draw(renderer.getContext(), "Ability Q: Speed Burst / Current Level: " + game.data.ability1 + " Cost: " + ((game.data.ability1+1)*10), this.pos.x, this.pos.y + 160);
+                this.font.draw(renderer.getContext(), "Ability W: Eat Your Creep For Health / Current Level: " + game.data.ability2 + " Cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
+                this.font.draw(renderer.getContext(), "Ability E: Throw Spear / Current Level: " + game.data.ability3 + " Cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y + 240);
             }
         })); 
         me.game.world.addChild(game.data.buytext, 35);
