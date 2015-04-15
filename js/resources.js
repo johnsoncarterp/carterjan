@@ -8,11 +8,12 @@ game.resources = [
         {name: "space", type:"image", src: "data/img/space.jpg"},
         {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
         {name: "player", type:"image", src: "data/img/orcSpear.png"},
+        {name: "player", type:"image", src: "data/img/skel.png"},
         {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
         {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
         {name: "title-screen", type:"image", src: "data/img/space.jpg"},
         {name: "exp-screen", type:"image", src: "data/img/space.jpg"},
-        {name: "gold-screen", type:"image", src: "data/img/spend.png"},
+        {name: "gold-screen", type:"image", src: "data/img/spend1.jpg"},
 
 	/* Atlases 
 	 * @example

@@ -113,22 +113,23 @@ game.SpendGold = Object.extend({
         me.input.bindKey(me.input.KEY.F3, "F3", true);
         me.input.bindKey(me.input.KEY.F4, "F4", true);
         me.input.bindKey(me.input.KEY.F5, "F5", true);
+        me.input.bindKey(me.input.KEY.F6, "F6", true);
         this.setBuyText();
     },
     
     setBuyText: function(){
-           me.game.world.addChild(new (me.Renderable.extend({
+          game.data.buytext = new (me.Renderable.extend({
             init: function() {
-                this._super(me.Renderable, 'init', [10, 10, 300, 50]);
-                this.font = new me.Font("impact", 26, "orangered");
+                this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
+                this.font = new me.Font("impact", 26, "violet");
+                this.updateWhenPause = true;
+                this.alwaysUpdate = true;
             },
             draw: function(renderer) {
                 this.font.draw(renderer.getContext(), "Press F1-F6 To Buy, B To Exit", this.pos.x, this.pos.y);
-            },
-            update: function(dt) {
-                return true;
             }
-        })));  
+        })); 
+        me.game.world.addChild(game.data.buytext, 35);
     },
     
     stopBuying: function() {
@@ -141,6 +142,7 @@ game.SpendGold = Object.extend({
         me.input.unbindKey(me.input.KEY.F3, "F3", true);
         me.input.unbindKey(me.input.KEY.F4, "F4", true);
         me.input.unbindKey(me.input.KEY.F5, "F5", true);
+        me.game.world.removeChild(game.data.buytext);
     }
 
 });
