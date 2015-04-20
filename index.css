@@ -33,7 +33,7 @@ body {
 }
 
 #input{
-    dispay: block;
+    display: block;
     text-align: center;
     visibility: hidden;
 }
