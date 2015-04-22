@@ -7,7 +7,7 @@ session_start();
 session_regenerate_id(true);
 //regenerates session
 
-$path = "/carterblog/";
+$path = '/carterjan/php/';
 //my path
 $host = "localhost";
 //my host
@@ -15,7 +15,7 @@ $username = "root";
 //my username
 $password = "root";
 //my password
-$database = "blog_db";
+$database = "nauts_db";
 //my database
 
 if (!isset($_SESSION["connection"])) {
