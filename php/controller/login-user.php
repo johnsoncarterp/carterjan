@@ -33,10 +33,10 @@ if ($query->num_rows == 1) {
     }
     //echo for login successful
     else {
-        echo "<p>invalid username and password</p>";
+        echo "invalid username and password";
     }
     //echo for invalid username and password
 } else {
-    echo "<p>invalid username and password</p>";
+    echo "invalid username and password";
 }
 //echo for invalid username and password

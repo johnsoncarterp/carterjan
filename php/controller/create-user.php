@@ -27,7 +27,7 @@ $_SESSION["name"] = $username;
 //query for insert into users 
 if ($query) {
     //need this for Ajax on index.php
-    echo "";
+    echo "true";
 }
 //echo for succesfully created user
 else {

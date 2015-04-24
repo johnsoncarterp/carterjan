@@ -19,6 +19,7 @@ $database = "nauts_db";
 //my database
 
 if (!isset($_SESSION["connection"])) {
+    echo 'buildingDB';
     $connection = new Database($host, $username, $password, $database);
     $_SESSION["connection"] = $connection;
 }
