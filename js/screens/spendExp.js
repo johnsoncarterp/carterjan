@@ -10,7 +10,7 @@ game.SpendExp = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.F3, "F3");
         me.input.bindKey(me.input.KEY.F4, "F4");
         me.input.bindKey(me.input.KEY.F5, "F5");
-        var exp1cost = ((game.data.exp1 + 1) * 10);
+        var exp1cost = ((Number(game.data.exp1) + 1) * 10);
 
         me.game.world.addChild(new (me.Renderable.extend({
             init: function() {
@@ -19,7 +19,7 @@ game.SpendExp = me.ScreenObject.extend({
             },
             draw: function(renderer) {
                 this.font.draw(renderer.getContext(), "Press F1-F4 To Buy, Press F5 To Skip", this.pos.x, this.pos.y);
-                this.font.draw(renderer.getContext(), "Current Gold: " + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 50);
+                this.font.draw(renderer.getContext(), "Current Exp: " + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 50);
                 this.font.draw(renderer.getContext(), "F1: Increase Gold Production/ Current Level: " + game.data.exp1.toString() + " /Cost:   " + exp1cost, this.pos.x, this.pos.y + 100);
                 this.font.draw(renderer.getContext(), "F2: Increase Starting Gold / Current Level: " + game.data.exp2.toString() + " /Cost:   " + ((game.data.exp2 + 1) * 10), this.pos.x, this.pos.y + 150);
                 this.font.draw(renderer.getContext(), "F3: Increase Attack Strength / Current Level: " + game.data.exp3.toString() + " /Cost:   " + ((game.data.exp3 + 1) * 10), this.pos.x, this.pos.y + 200);

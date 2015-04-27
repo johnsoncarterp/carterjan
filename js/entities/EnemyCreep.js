@@ -1,3 +1,4 @@
+//init function for enemy creep
 game.EnemyCreep = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
@@ -10,6 +11,7 @@ game.EnemyCreep = me.Entity.extend({
                     return (new me.Rect(0, 0, 32, 64)).toPolygon();
                 }
             }]);
+        //showing that health = enemy creep health
         this.health = game.data.enemyCreepHealth;
         this.alwaysUpdate = true;
         //this.attacking lets us know if the enemy is currently attacking
@@ -20,13 +22,16 @@ game.EnemyCreep = me.Entity.extend({
         this.lastHit = new Date().getTime();
         this.now = new Date().getTime();
         this.body.setVelocity(3, 20);
+        //adds animation to enemy creep
         this.type = "EnemyCreep";
         this.renderable.addAnimation("walk", [3, 4, 5], 80);
         this.renderable.setCurrentAnimation("walk");
     },
+    //lose health functionn
     loseHealth: function(damage) {
         this.health = this.health - damage;
     },
+    //my update function
     update: function(delta) {
         if (this.health <= 0) {
             me.game.world.removeChild(this);
@@ -34,7 +39,7 @@ game.EnemyCreep = me.Entity.extend({
         this.now = new Date().getTime();
 
         this.body.vel.x -= this.body.accel.x * me.timer.tick;
-
+        //checks collision
         me.collision.check(this, true, this.collideHandler.bind(this), true);
 
         this.body.update(delta);
@@ -44,6 +49,7 @@ game.EnemyCreep = me.Entity.extend({
 
         return true;
     },
+    //my collide handler function
     collideHandler: function(response) {
         if (response.b.type === 'PlayerBase') {
             this.attacking = true;
@@ -58,12 +64,12 @@ game.EnemyCreep = me.Entity.extend({
             if ((this.now - this.lastHit >= 1000)) {
                 //updates last hit timer
                 this.lastHit = this.now;
-                //mekes player base call its lose health function and passes a damage of 1
+                //makes player base call its lose health function and passes a damage of 1
                 response.b.loseHealth(game.data.enemyCreepAttack);
             }
         } else if (response.b.type === 'PlayerEntity') {
             var xdif = this.pos.x - response.b.pos.x;
-
+            //showing the attaking and last attacking
             this.attacking = true;
             this.lastAttacking = this.now;
             this.body.vel.x = 0;

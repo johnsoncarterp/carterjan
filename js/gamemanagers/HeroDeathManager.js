@@ -1,7 +1,9 @@
+//init function for hero death manager
 game.HeroDeathManager = Object.extend({
     init: function(x, y, settings) {
         this.alwaysUpdate = true;
     },
+    //my update function
     update: function() {
         if (game.data.player.dead) {
             console.log("reset");

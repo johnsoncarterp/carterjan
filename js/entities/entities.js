@@ -1,3 +1,4 @@
+//init function for player entity
 game.PlayerEntity = me.Entity.extend({
     //my init function that shows all other functions
     init: function(x, y, settings) {
@@ -95,7 +96,7 @@ game.PlayerEntity = me.Entity.extend({
         //makes player attack
         this.attacking = me.input.isKeyPressed("attack");
     },
-    // set annimation function
+    // my set annimation function
     setAnimation: function() {
         if (this.attacking) {
             if (!this.renderable.isCurrentAnimation("attack")) {
@@ -112,12 +113,12 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.setCurrentAnimation("idle");
         }
     },
-    // lose health function
+    // my lose health function
     loseHealth: function(damage) {
         this.health = this.health - damage;
         console.log(this.health);
     },
-     // coollide handler function
+     // my collide handler function
     collideHandler: function(response) {
         if (response.b.type === "EnemyBaseEntity") {
             this.collideWithEnemyBase(response);
@@ -146,7 +147,7 @@ game.PlayerEntity = me.Entity.extend({
             response.b.loseHealth(game.data.playerAttack);
         }
     },
-    
+    //mycollide with enemy vreep function
     collideWithEnemyCreep: function(response) {
         var xdif = this.pos.x - response.b.pos.x;
         var ydif = this.pos.y - response.b.pos.y;
@@ -157,7 +158,7 @@ game.PlayerEntity = me.Entity.extend({
 this.hitCreep(response);
    };
     },
-    
+    //my stop movement function
     stopMovement: function(xdif){
                 if (xdif > 0) {
             this.pos.x = this.pos.x + 1;
@@ -171,7 +172,7 @@ this.hitCreep(response);
             }
         }
     },
-    
+            // my check attack function
     checkAttack: function(xdif, ydif){
               if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer
                 && (Math.abs(ydif) <= 40) &&
@@ -184,7 +185,7 @@ this.hitCreep(response);
         }  
         return false;
     },
-    
+    //my hit creep function
     hitCreep: function(response){
                         //adds 1 gold for creep kill
            if (response.b.health <= game.data.playerAttack) {
