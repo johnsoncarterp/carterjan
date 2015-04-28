@@ -3,6 +3,7 @@ game.resources = [
      * @example
      * {name: "example", type:"image", src: "data/img/example.png"},
      */
+    //all of my different images
     {name: "background-tiles", type: "image", src: "data/img/background-tiles.png"},
     {name: "space", type: "image", src: "data/img/space.jpg"},
     {name: "meta-tiles", type: "image", src: "data/img/meta-tiles.png"},
@@ -25,6 +26,7 @@ game.resources = [
      * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
      * {name: "example01", type: "tmx", src: "data/map/example01.json"},
      */
+    //my level
     {name: "level01", type: "tmx", src: "data/map/carter1.tmx"},
     /* Background music. 
      * @example

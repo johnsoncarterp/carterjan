@@ -3,6 +3,7 @@ require_once("php/controller/create-db.php");
 ?>
 <html>
     <head>
+        <!--my title-->
         <title>melonJS Template</title>
         <link rel="stylesheet" type="text/css" media="screen" href="index.css">
         <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -22,15 +23,17 @@ require_once("php/controller/create-db.php");
         <div id="screen"></div>
 
         <form id="input" method="post">
+            <!-- my username class and label-->
             <div class="field">
                 <label for="username">Username</label>
                 <input type='username' name='username' id='username' autocomplete='off'>
             </div>    
+            <!--my password class and label-->
             <div class='password'>
                 <label for="password">Password</label>
                 <input type='password' name='password' id='password' autocomplete='off'>   
             </div>
-
+            <!--my buttons-->
             <button type='button' id='register'>Register</button>
             <button type='button' id='load'>Load</button>
             <button type='button' id='mainmenu'>Main Menu</button>
@@ -89,56 +92,73 @@ require_once("php/controller/create-db.php");
                 }
             });
         </script>
-
+        
         <script>
+            //checks if click on main menu button
             $("#mainmenu").bind("click", function() {
                 me.state.change(me.state.MENU);
             });
+            //checks if click on register button
             $("#register").bind("click", function() {
                 $.ajax({
                     type: "POST",
                     url: "php/controller/create-user.php",
                     data: {
+                        //data for username and password
                         username: $('#username').val(),
                         password: $('#password').val()
                     },
                     dataType: "text"
                 })
+                //for success 
                         .success(function(response) {
                             if (response === "true") {
+                                //changes state to play
                                 me.state.change(me.state.PLAY);
                             } else {
+                                //alert if success
                                 alert(response);
                             }
                         })
+                        //my fail function
                         .fail(function(response) {
+                            //alert for fail
                             alert("fail");
                         });
             });
+            //checks if you click load button
             $("#load").bind("click", function() {
+                //some ajax code 
                 $.ajax({
                     type: "POST",
                     url: "php/controller/login-user.php",
                     data: {
+                        //username and password data
                         username: $('#username').val(),
                         password: $('#password').val()
                     },
                     dataType: "text"
                 })
+                //my success function
                         .success(function(response) {
                             if (response === "invalid username and password") {
+                                //alert if success
                                 alert(response);
                             } else {
+                                //jquery.parseJSON data
                                 var data = jQuery.parseJSON(response);
                                 game.data.exp = data["exp"];
                                 game.data.exp1 = data["exp1"];
                                 game.data.exp2 = data["exp2"];
                                 game.data.exp3 = data["exp3"];
                                 game.data.exp4 = data["exp4"];
+                                //changes state to SPENDEXP
                                 me.state.change(me.state.SPENDEXP);
                             }
                         })
+                        //my fail function
                         .fail(function(response) {
+                            //alerts if fail
                             alert("fail");
                         });
             });

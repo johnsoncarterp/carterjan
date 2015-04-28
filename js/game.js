@@ -4,6 +4,7 @@ var game = {
 // an object where to store game information
     data: {
 // score
+//all of my data
         score: 0,
         enemyBaseHealth: 10,
         playerBaseHealth: 10,
@@ -39,6 +40,7 @@ var game = {
         buytext: ""
     },
     // Run on page load.
+    //my onload functiion
     "onload": function() {
         // Initialize the video.
         if (!me.video.init("screen", me.video.CANVAS, 1067, 600, true, '1.0')) {
@@ -52,10 +54,11 @@ var game = {
                 me.plugin.register.defer(this, debugPanel, "debug");
             });
         }
+        //my different states
         me.state.SPENDEXP = 112;
         me.state.LOAD = 113;
         me.state.NEW = 114;
-
+        //some console.logs
         console.log(game.data.exp);
         console.log(game.data.exp2);
 
@@ -69,7 +72,9 @@ var game = {
         me.state.change(me.state.LOADING);
     },
     // Run on game resources loaded.
+    //my loaded function
     "loaded": function() {
+        //loading game resourses
         me.pool.register("player", game.PlayerEntity, true);
         me.pool.register("PlayerBase", game.PlayerBaseEntity);
         me.pool.register("EnemyBase", game.EnemyBaseEntity);
@@ -78,7 +83,7 @@ var game = {
         me.pool.register("HeroDeathManager", game.HeroDeathManager);
         me.pool.register("ExperienceManager", game.ExperienceManager);
         me.pool.register("SpendGold", game.SpendGold);
-
+        //all of my loaded screens
         me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.set(me.state.SPENDEXP, new game.SpendExp());

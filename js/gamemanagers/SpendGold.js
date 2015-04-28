@@ -83,6 +83,7 @@ game.SpendGold = Object.extend({
     },
     //my check buy keys function
     checkBuyKeys: function() {
+        //checking keys F1 - F6
         if(me.input.isKeyPressed("F1")){
             if(this.checkCost(1)){
              this.makePurchase(1);   
@@ -111,24 +112,32 @@ game.SpendGold = Object.extend({
     },
     //my check cost function
     checkCost: function(skill) {
+        //skill1
         if(skill === 1 && (game.data.gold >= ((game.data.skill1+1)*10))){
             return true;
+            //skill2
         }else if(skill === 2 && (game.data.gold >= ((game.data.skill2+1)*10))){
             return true;
+            //skill3
         }else if(skill === 3 && (game.data.gold >= ((game.data.skill3+1)*10))){
             return true;
+            //skill4
         }else if(skill === 4 && (game.data.gold >= ((game.data.skill4+1)*10))){
             return true;
+            //skill5
         }else if(skill === 5 && (game.data.gold >= ((game.data.skill5+1)*10))){
             return true;
+            //skill6
         }else if(skill === 6 && (game.data.gold >= ((game.data.skill6+1)*10))){
             return true;
+            //returning false for all skills
         }else{
             return false;
         }
     },
     //my make purchase function
     makePurchase: function(skill) {
+        //make purcahse for skills 1 - 6
         if(skill === 1){
         game.data.gold -=  ((game.data.skill1 + 1) * 10);
         game.data.skill1 += 1;
