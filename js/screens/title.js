@@ -14,7 +14,7 @@ game.TitleScreen = me.ScreenObject.extend({
             //my init function for text
             init: function() {
                 //where text is located
-                this._super(me.Renderable, 'init', [270, 240, 300, 50]);
+                this._super(me.Renderable, 'init', [350, 240, 300, 50]);
                 //how text is styled
                 this.font = new me.Font("impact", 46, "orangered");
                 me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
@@ -39,7 +39,7 @@ game.TitleScreen = me.ScreenObject.extend({
                     //init function for text
             init: function() {
                 //where text is located
-                this._super(me.Renderable, 'init', [380, 340, 250, 50]);
+                this._super(me.Renderable, 'init', [430, 340, 250, 50]);
                 //how my text is styled
                 this.font = new me.Font("impact", 46, "blueviolet");
                 me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
