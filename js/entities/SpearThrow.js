@@ -12,17 +12,17 @@ game.SpearThrow = me.Entity.extend({
             }]);
         this.alwaysUpdate = true;
         this.body.setVelocity(8, 0);
-        this.attack = gaem.data.ability3 * 3;
+        this.attack = game.data.ability3 * 3;
         // makes picture show of spear
         this.type = "spear";
         this.facing = facing;
     },
     update: function(delta) {
-        if(this.facing === "left"){
-        this.body.vel.x -= this.body.accel.x * me.timer.tick;
-    }else{
-        this.body.vel.x += this.body.accel.x * me.timer.tick;
-    }
+        if (this.facing === "left") {
+            this.body.vel.x -= this.body.accel.x * me.timer.tick;
+        } else {
+            this.body.vel.x += this.body.accel.x * me.timer.tick;
+        }
         //checks collision
         me.collision.check(this, true, this.collideHandler.bind(this), true);
         this.body.update(delta);

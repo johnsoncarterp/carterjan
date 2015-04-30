@@ -38,7 +38,7 @@ game.PlayerBaseEntity = me.Entity.extend({
     },
     //my lose health function
     loseHealth: function(damage) {
-       this.health = this.health - damage;
+        this.health = this.health - damage;
         console.log(this.health);
     },
     //my on collision function

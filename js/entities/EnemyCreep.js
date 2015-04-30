@@ -48,7 +48,7 @@ game.EnemyCreep = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
 
         return true;
-    },  
+    },
     //my collide handler function
     collideHandler: function(response) {
         if (response.b.type === 'PlayerBase') {

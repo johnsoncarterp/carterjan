@@ -15,7 +15,7 @@ game.EnemyBaseEntity = me.Entity.extend({
         this.broken = false;
         //showing that health = enemy base health
         this.health = game.data.enemyBaseHealth;
-       // showing that its always updating
+        // showing that its always updating
         this.alwaysUpdate = true;
         //binds the oncollision
         this.body.onCollision = this.onCollision.bind(this);
@@ -41,7 +41,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 
     },
     //my lose health function
-    loseHealth: function(damage) {      
+    loseHealth: function(damage) {
         this.health = this.health - damage;
         console.log(this.health);
     }

@@ -10,17 +10,17 @@ game.PlayScreen = me.ScreenObject.extend({
         me.levelDirector.loadLevel("level01");
         // resets player
         this.resetPlayer(10, 0);
-        
+
         //my managers and spend gold
         var gameTimerManager = me.pool.pull("GameTimerManager", 0, 420, {});
         me.game.world.addChild(gameTimerManager, 5);
-        
+
         var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 420, {});
         me.game.world.addChild(heroDeathManager, 5);
-        
+
         var experienceManager = me.pool.pull("ExperienceManager", 0, 420, {});
         me.game.world.addChild(experienceManager, 5);
-        
+
         var spendGold = me.pool.pull("SpendGold", 0, 420, {});
         me.game.world.addChild(spendGold, 5);
 
@@ -28,7 +28,7 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.B, "buy");
         me.input.bindKey(me.input.KEY.Q, "skill1");
         me.input.bindKey(me.input.KEY.W, "skill2");
-        me.input.bindKey(me.input.KEY.E, "skkill3");
+        me.input.bindKey(me.input.KEY.E, "skill3");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.A, "attack");
         me.input.bindKey(me.input.KEY.LEFT, "left");

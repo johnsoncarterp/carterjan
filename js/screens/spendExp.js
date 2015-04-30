@@ -39,23 +39,23 @@ game.SpendExp = me.ScreenObject.extend({
             }
         })));
         //subscribing to event
-        this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge){
+        this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge) {
             //showing action of pressing F1
-            if(action === "F1"){
-              if(game.data.exp >= exp1cost ){
-                  game.data.exp1 += 1;
-                  game.data.exp -= exp1cost;
-                  //changing state to play
-                  me.state.change(me.state.PLAY);
-              }
-              //showing action of pressing F2 - F5
-            }else if(action === "F2"){
-                
-            }else if(action === "F3"){
-                
-            }else if(action === "F4"){
-                
-            }else if(action === "F5"){
+            if (action === "F1") {
+                if (game.data.exp >= exp1cost) {
+                    game.data.exp1 += 1;
+                    game.data.exp -= exp1cost;
+                    //changing state to play
+                    me.state.change(me.state.PLAY);
+                }
+                //showing action of pressing F2 - F5
+            } else if (action === "F2") {
+
+            } else if (action === "F3") {
+
+            } else if (action === "F4") {
+
+            } else if (action === "F5") {
                 //after F5 is pressed it changes state to play
                 me.state.change(me.state.PLAY);
             }

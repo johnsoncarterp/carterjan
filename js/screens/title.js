@@ -34,12 +34,12 @@ game.TitleScreen = me.ScreenObject.extend({
                 me.state.change(me.state.NEW);
             }
         })));
-        
-        
+
+
         me.game.world.addChild(game.data.option1);
-        
-                game.data.option2 = new (me.Renderable.extend({
-                    //init function for text
+
+        game.data.option2 = new (me.Renderable.extend({
+            //init function for text
             init: function() {
                 //where text is located
                 this._super(me.Renderable, 'init', [430, 340, 250, 50]);
@@ -61,12 +61,12 @@ game.TitleScreen = me.ScreenObject.extend({
                 me.input.releasePointerEvent('pointerdown', this);
                 //changes game state to LOAD
                 me.state.change(me.state.LOAD);
-                
+
             }
         }));
 
         me.game.world.addChild(game.data.option2);
-   },
+    },
     /**	
      *  action to perform when leaving this screen (state change)
      */
