@@ -59,7 +59,7 @@ require_once("php/controller/create-db.php");
         <script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
         <script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
         <script type="text/javascript" src="js/entities/HUD.js"></script>
-        <script type="text/javascript" src="js/entities/SpearThrow.js.js"></script>
+        <script type="text/javascript" src="js/entities/SpearThrow.js"></script>
 <!--more script-->
         <script type="text/javascript" src="js/screens/title.js"></script>
         <script type="text/javascript" src="js/screens/play.js"></script>
@@ -148,11 +148,11 @@ require_once("php/controller/create-db.php");
                             } else {
                                 //jquery.parseJSON data
                                 var data = jQuery.parseJSON(response);
-                                game.data.exp = data["exp"];
-                                game.data.exp1 = data["exp1"];
-                                game.data.exp2 = data["exp2"];
-                                game.data.exp3 = data["exp3"];
-                                game.data.exp4 = data["exp4"];
+                                game.data.exp = Number(data["exp"]);
+                                game.data.exp1 = Number(data["exp1"]);
+                                game.data.exp2 = Number(data["exp2"]);
+                                game.data.exp3 = Number(data["exp3"]);
+                                game.data.exp4 = Number(data["exp4"]);
                                 //changes state to SPENDEXP
                                 me.state.change(me.state.SPENDEXP);
                             }
