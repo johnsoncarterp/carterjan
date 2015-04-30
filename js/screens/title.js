@@ -9,8 +9,7 @@ game.TitleScreen = me.ScreenObject.extend({
         me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10); // TODO
 
 
-        
-        me.game.world.addChild(new (me.Renderable.extend({
+        game.data.option1 = (new (me.Renderable.extend({
             //my init function for text
             init: function() {
                 //where text is located
@@ -29,13 +28,17 @@ game.TitleScreen = me.ScreenObject.extend({
             },
             //my new game function
             newGame: function() {
+                me.input.releasePointerEvent('pointerdown', game.data.option2);
                 me.input.releasePointerEvent('pointerdown', this);
                 //changes game state to NEW
                 me.state.change(me.state.NEW);
             }
         })));
         
-                me.game.world.addChild(new (me.Renderable.extend({
+        
+        me.game.world.addChild(game.data.option1);
+        
+                game.data.option2 = new (me.Renderable.extend({
                     //init function for text
             init: function() {
                 //where text is located
@@ -54,13 +57,13 @@ game.TitleScreen = me.ScreenObject.extend({
             },
             //my  new game function
             newGame: function() {
-                
+                me.input.releasePointerEvent('pointerdown', game.data.option1);
                 me.input.releasePointerEvent('pointerdown', this);
                 //changes game state to LOAD
                 me.state.change(me.state.LOAD);
                 
             }
-        })));
+        }));
 
 
    },

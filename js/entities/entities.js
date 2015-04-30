@@ -211,11 +211,12 @@ this.hitCreep(response);
         }
     },
     
+    //my throw spear function
     throwSpear:function(){
-        if(this.lastSpear >= game.data.spearTimer){
+        if(this.lastSpear >= game.data.spearTimer && game.data.ability3 > 0){
          this.lastSpear = this.now;
-            var creepe = me.pool.pull("EnemyCreep", 4800, 1000, {});
-            me.game.world.addChild(creepe, 5);
+            var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing);
+            me.game.world.addChild(spear, 10);
         }
     }
 

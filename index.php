@@ -49,7 +49,7 @@ require_once("php/controller/create-db.php");
         <!-- Game Scripts -->
         <script type="text/javascript" src="js/game.js"></script>
         <script type="text/javascript" src="js/resources.js"></script>
-
+<!--more script-->
         <script type="text/javascript" src="js/entities/entities.js"></script>
         <script type="text/javascript" src="js/gamemanagers/GameManager.js"></script>
         <script type="text/javascript" src="js/gamemanagers/GameTimerManager.js"></script>
@@ -59,7 +59,8 @@ require_once("php/controller/create-db.php");
         <script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
         <script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
         <script type="text/javascript" src="js/entities/HUD.js"></script>
-
+        <script type="text/javascript" src="js/entities/SpearThrow.js.js"></script>
+<!--more script-->
         <script type="text/javascript" src="js/screens/title.js"></script>
         <script type="text/javascript" src="js/screens/play.js"></script>
         <script type="text/javascript" src="js/screens/spendExp.js"></script>
@@ -92,7 +93,7 @@ require_once("php/controller/create-db.php");
                 }
             });
         </script>
-        
+
         <script>
             //checks if click on main menu button
             $("#mainmenu").bind("click", function() {
@@ -110,7 +111,7 @@ require_once("php/controller/create-db.php");
                     },
                     dataType: "text"
                 })
-                //for success 
+                        //for success 
                         .success(function(response) {
                             if (response === "true") {
                                 //changes state to play
@@ -139,7 +140,7 @@ require_once("php/controller/create-db.php");
                     },
                     dataType: "text"
                 })
-                //my success function
+                        //my success function
                         .success(function(response) {
                             if (response === "invalid username and password") {
                                 //alert if success
